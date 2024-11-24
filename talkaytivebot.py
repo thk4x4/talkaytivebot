@@ -135,6 +135,7 @@ def get_new_image_dogs():
     random_dog = response[0].get('url')
     return random_dog
 
+
 def new_cat(update, context):
     chat = update.effective_chat
     context.bot.send_photo(chat.id, get_new_image_cats())
@@ -143,6 +144,7 @@ def new_cat(update, context):
 def new_dog(update, context):
     chat = update.effective_chat
     context.bot.send_photo(chat.id, get_new_image_dogs())
+
 
 def show_cats_image(update, context):
     chat = update.effective_chat
