@@ -101,9 +101,9 @@ def wake_up(update, context):
     name = update.message.chat.first_name
     buttons = ReplyKeyboardMarkup([
                 ['/newcat', '/newdog'],
-                ['/now_time', '/weather']],
-            resize_keyboard=True
-            )
+                ['/now_time', '/weather'],
+                ['/telegram_id']],  
+                resize_keyboard=True)
     context.bot.send_message(
         chat_id=chat.id,
         text='Рад приветствовать тебя, {}! Чем могу быть полезен?'.format(name),
@@ -211,14 +211,14 @@ def weather(update, context):
     )
 
 
-def telegram_id(update, context):
+def show_telegram_id(update, context):
     pprint(update)
     telegram_id = update.message.chat.id
     chat = update.effective_chat
     button = ReplyKeyboardMarkup([['/menu']], resize_keyboard=True)
     context.bot.send_message(
         chat_id=chat.id,
-        text='Ваш id {} .'.format(telegram_id),
+        text='Ваш_id {}'.format(telegram_id),
         reply_markup=button
     )
 
@@ -230,7 +230,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('menu', wake_up))
     updater.dispatcher.add_handler(CommandHandler('now_time', show_now_time))
     updater.dispatcher.add_handler(CommandHandler('weather', weather))
-    updater.dispatcher.add_handler(CommandHandler('telegram_id', telegram_id))
+    updater.dispatcher.add_handler(CommandHandler('telegram_id', show_telegram_id))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, say_hi))
     updater.start_polling(poll_interval=5.0)
     updater.idle()
