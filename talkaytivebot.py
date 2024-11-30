@@ -218,7 +218,7 @@ def show_telegram_id(update, context):
     button = ReplyKeyboardMarkup([['/menu']], resize_keyboard=True)
     context.bot.send_message(
         chat_id=chat.id,
-        text='Ваш_id {}'.format(telegram_id),
+        text='telegram_id {}'.format(telegram_id),
         reply_markup=button
     )
 
